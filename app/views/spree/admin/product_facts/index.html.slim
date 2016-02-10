@@ -23,7 +23,7 @@
           td
             = product_fact.facts
           td
-            = product_fact.products.map{ |p| p.name }.join(", ").truncate(50)
+            = product_fact.products.map{ |p| p.name }.join(", ").truncate(80)
           td.actions.text-right[ data-hook="admin_product_facts_index_rows_actions"]
             = link_to_edit product_fact, no_text: true
             = link_to_delete product_fact, no_text: true
