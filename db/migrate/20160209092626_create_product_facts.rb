@@ -1,9 +1,11 @@
 class CreateProductFacts < ActiveRecord::Migration
   def up
     create_table :spree_product_facts do |t|
+      t.text :facts
       t.timestamps null: false
     end
-    Spree::ProductFact.create_translation_table! :facts => :text
+    params= {  :facts => :text }
+    Spree::ProductFact.create_translation_table!(params, { migrate_data: true })
   end
 
   def down

@@ -4,4 +4,5 @@
 - content_for :page_actions do
   = button_link_to Spree.t(:back_to_resource_list, resource: Spree::ProductFact.model_name.human), spree.admin_product_facts_path, class: 'btn-primary', icon: 'arrow-left'
 
+/= render 'product_translation_form'
 = render 'form'

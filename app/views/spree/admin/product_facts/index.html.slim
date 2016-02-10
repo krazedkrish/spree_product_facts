@@ -2,7 +2,7 @@
   plural_resource_name(Spree::ProductFact)
 
 - content_for :page_actions
-  - button_link_to Spree.t(:new_fact, scope: :product_fact), new_object_url, icon: 'lus', class: 'btn-primary', id: 'admin_new_product_fact'
+  - button_link_to Spree.t(:new_fact, scope: :product_fact), new_object_url, icon: 'plus', class: 'btn-primary', id: 'admin_new_product_fact'
 
 - if @product_facts.any?
   table.table#listing_product_fact[ data-hook ]
