@@ -1,0 +1,28 @@
+- content_for :page_actions do
+  = button_link_to Spree.t(:back_to_resource_list, resource: plural_resource_name(Spree::ProductFact)), spree.admin_product_facts_path, icon: 'arrow-left', class: 'btn-primary'
+
+= form_for [:admin, resource] do |f|
+  .row[ data-hook="admin_product_fact_form_fields"]
+    .col-md-12
+      .form-group
+        = f.label :facts
+        span.required
+        = f.text_area :facts, :class => "form-control", :rows => 10
+        = f.error_message_on :facts
+      .form-group
+        = f.collection_select( :product_ids, @products, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2', :multiple => true } )
+        / = f.label :taxon_ids, Spree.t(:taxons)
+        / - if can? :modify, Spree::ProductFact
+        /   = f.hidden_field :option_type_ids, value: @products.ids.join(',')
+        / - elsif @products.any?
+        /   ul.text_list
+        /   - @products.each do |product|
+        /     li
+        /       = product.name
+        / - else
+        /   .alert.alert-info
+        /     = Spree.t(:no_resource_found, resource: :products)
+
+    .col-md-12
+
+  = render "spree/admin/shared/#{resource.new_record? ? 'new': 'edit'}_resource_links"

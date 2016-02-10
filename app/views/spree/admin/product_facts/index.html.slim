@@ -1,0 +1,24 @@
+- content_for :page_title do
+  plural_resource_name(Spree::ProductFact)
+
+- content_for :page_actions
+  - button_link_to Spree.t(:new_fact, scope: :product_fact), new_object_url, icon: 'lus', class: 'btn-primary', id: 'admin_new_product_fact'
+
+- if @product_facts.any?
+  table.table#listing_pages[ data-hook ]
+    colgroup
+      col[ style="width: 55%" ]
+      col[ style="width: 30%" ]
+      col[ style="width: 15%" ]
+    thead
+      tr[ data-hook="admin_product_facts_index_headers" ]
+        th
+          = Spree.t("Facts")
+        th
+          = Spree.t("Products")
+        th.actions[ data-hook="admin_product_facts_index_index_header_actions"]
+    tbody
+-else
+  .alert.alert-warning.no-objects-found
+    = Spree.t(:no_resource_found, resource: Spree::ProductFact.model_name.human)
+    = link_to Spree.t(:add_one), spree.new_admin_product_fact_path

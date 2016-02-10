@@ -1,0 +1,4 @@
+-content_for :product_facts_title do
+  = Spree.t(:editing_resource, resource: Spree::ProductFact.model_name.human)
+
+= render 'form', resource: @product_fact

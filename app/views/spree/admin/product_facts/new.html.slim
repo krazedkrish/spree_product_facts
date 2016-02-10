@@ -1,0 +1,4 @@
+- content_for :page_title do
+  = Spree.t(:new_page, scope: :static_content)
+
+= render 'form', resource: @product_fact
