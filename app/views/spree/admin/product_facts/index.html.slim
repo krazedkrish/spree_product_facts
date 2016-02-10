@@ -25,9 +25,11 @@
           td
             = product_fact.products.map{ |p| p.name }.join(", ").truncate(80)
           td.actions.text-right[ data-hook="admin_product_facts_index_rows_actions"]
-            = link_to_edit product_fact, no_text: true
-            = link_to_delete product_fact, no_text: true
+            => link_to_edit product_fact, no_text: true
+            => link_to_delete product_fact, no_text: true
+            => link_to_with_icon 'translate', nil, spree.admin_translations_path('product_facts', product_fact.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary'
+
 -else
   .alert.alert-warning.no-objects-found
-    = Spree.t(:no_resource_found, resource: Spree::ProductFact.model_name.human)
-    = link_to Spree.t(:add_one), spree.new_admin_product_fact_path
+    => Spree.t(:no_resource_found, resource: Spree::ProductFact.model_name.human)
+    => link_to Spree.t(:add_one), spree.new_admin_product_fact_path
