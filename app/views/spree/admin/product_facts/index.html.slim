@@ -5,7 +5,7 @@
   - button_link_to Spree.t(:new_fact, scope: :product_fact), new_object_url, icon: 'lus', class: 'btn-primary', id: 'admin_new_product_fact'
 
 - if @product_facts.any?
-  table.table#listing_pages[ data-hook ]
+  table.table#listing_product_fact[ data-hook ]
     colgroup
       col[ style="width: 55%" ]
       col[ style="width: 30%" ]
@@ -18,6 +18,15 @@
           = Spree.t("Products")
         th.actions[ data-hook="admin_product_facts_index_index_header_actions"]
     tbody
+      - @product_facts.each do |product_fact|
+        tr[ data-hook="admin_product_facts_index_rows" class="#{ cycle('odd', 'even') }" id="#{dom_id product_fact}" ]
+          td
+            = product_fact.facts
+          td
+            = product_fact.products.map{ |p| p.name }.join(", ").truncate(50)
+          td.actions.text-right[ data-hook="admin_product_facts_index_rows_actions"]
+            = link_to_edit product_fact, no_text: true
+            = link_to_delete product_fact, no_text: true
 -else
   .alert.alert-warning.no-objects-found
     = Spree.t(:no_resource_found, resource: Spree::ProductFact.model_name.human)
