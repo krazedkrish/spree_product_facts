@@ -1,6 +1,5 @@
 class Spree::ProductFact < ActiveRecord::Base
-  validates :facts, { :length => { :in => 0..255 },
-                      :presence => true,
+  validates :facts, { :presence => true,
                       :allow_blank => true,
                       :allow_nil => false,
                     }
