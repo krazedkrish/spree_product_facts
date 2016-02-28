@@ -5,11 +5,16 @@
   .row[ data-hook="admin_product_fact_form_fields"]
     .col-md-12
       .form-group
-        = f.label :facts
+        = f.label :title, Spree.t('title')
+        span.required
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :facts, Spree.t('fact')
         span.required
         = f.text_area :facts, :class => "form-control", :rows => 10
         = f.error_message_on :facts
       .form-group
+        = f.label Spree.t('product')
         = f.collection_select( :product_ids, @products, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2', :multiple => true } )
         / = f.label :taxon_ids, Spree.t(:taxons)
         / - if can? :modify, Spree::ProductFact

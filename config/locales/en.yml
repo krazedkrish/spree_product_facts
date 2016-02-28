@@ -6,9 +6,11 @@ en:
     attributes:
       spree/page:
         facts: Facts
+        title: Title
     models:
       spree/product_fact:
         one: Interesting Fact
         other: Interesting Facts
   spree:
     facts: "Facts"
+    title: "Title"
