@@ -13,7 +13,9 @@
     thead
       tr[ data-hook="admin_product_facts_index_headers" ]
         th
-          = Spree.t("Facts")
+          = Spree.t("facts")
+        th
+          = Spree.t("title")
         th
           = Spree.t("Products")
         th.actions[ data-hook="admin_product_facts_index_index_header_actions"]
@@ -22,6 +24,8 @@
         tr[ data-hook="admin_product_facts_index_rows" class="#{ cycle('odd', 'even') }" id="#{dom_id product_fact}" ]
           td
             = product_fact.facts.truncate(150) if product_fact.try(:facts)
+          td
+            = product_fact.title.truncate(20) if product_fact.try(:title)
           td
             = product_fact.products.map{ |p| p.name }.join(", ").truncate(80)
           td.actions.text-right[ data-hook="admin_product_facts_index_rows_actions"]
